@@ -1,0 +1,21 @@
+{
+  "name": "lovebeautyandplanet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.4.0"
+  }, 
+  "scripts": {
+  "regression": "npx playwright test tests/login.spec.js tests/homepage.spec.js tests/plp.spec.js tests/pdp.spec.js tests/cart.spec.js"
+}
+}
