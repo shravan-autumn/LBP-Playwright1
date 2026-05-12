@@ -3,7 +3,7 @@ import { HomePage } from '../pages/homepage.js';
 import { Login } from '../pages/login.js';
 
 let hp;
-let lp;
+
 
 test.beforeEach(async ({ page }) => {
   hp = new HomePage(page);

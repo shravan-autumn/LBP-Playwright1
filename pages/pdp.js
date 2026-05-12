@@ -53,13 +53,13 @@ exports.PDP = class PDP {
     await expect(this.pageUrlMarker).toHaveCount(1);
   }
 
-  async checkInvalidPincode(value = '000') {
+  async checkInvalidPincode(value) {
     await this.pincodeInput.fill(value);
     await this.pincodeCheckBtn.click();
     await expect(this.pincodeError).toBeVisible();
   }
 
-  async checkValidPincode(value = '110001') {
+  async checkValidPincode(value) {
     await this.pincodeInput.fill(value);
     await this.pincodeCheckBtn.click();
     await expect(this.pincodeResponse).toBeVisible();
