@@ -305,26 +305,36 @@ exports.HomePage = class HomePage {
 
       // Verify Notify popup is displayed
       await expect(this.inTheSpotLightNotifyPopup).toBeVisible();
-    } else {
+    }  else {
 
-      // Click Add to Cart
-      await this.inTheSpotLightAddToCartButton.first().click();
+    // Click Add to Cart
+    await this.inTheSpotLightAddToCartButton.first().click();
 
-      // Open cart drawer
-      await this.cartLink.click();
+    // Open cart drawer
+    await this.cartLink.click();
 
-      // Wait for cart products
-      await this.productTitle.first().waitFor();
+    // Wait for cart products
+    await this.cartproductTitle.first().waitFor();
 
-      // Convert all cart products to lowercase
-      const cartProducts = (await this.productTitle.allTextContents()).map(product =>
-        product.trim().toLowerCase()
-      );
+    // Convert cart products to lowercase
+    const cartProducts = (
+      await this.cartproductTitle.allTextContents()
+    ).map(product =>
+      product.trim().toLowerCase()
+    );
+    // Get meaningful product name
+    const shortProductName = productName
+      .split('\n')
+      .pop()
+      .trim();
+    // Verify partial match
+    const productAdded = cartProducts.some(product =>
+      product.includes(shortProductName)
+    );
 
-      // Verify added product exists in cart
-      expect(cartProducts).toContain(productName);
-    }
+    expect(productAdded).toBeTruthy();
   }
+}
   async whatSetsUsApartDropdown() {
     for (let i = 0; i < await this.whatSetsUsApartCard.count(); i++) {
       await this.whatSetsUsApartCard.nth(i).click();

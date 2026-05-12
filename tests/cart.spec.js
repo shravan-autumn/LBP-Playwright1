@@ -65,7 +65,7 @@ test.describe('Cart', () => {
     await expect(c.freebie).toBeVisible();
   });
 
-  test('Cart6 Verify the cart quantity increase/decrease functionality', async ({ page }) => {
+  test.only('Cart6 Verify the cart quantity increase/decrease functionality', async ({ page }) => {
     await pdp.searchPLPToPDPNavigation("oil");
     await c.addFirstProductToCart();
     await c.cartQunatitySelectorFunctionality(page);

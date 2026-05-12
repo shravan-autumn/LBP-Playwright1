@@ -37,8 +37,9 @@ exports.Cart = class Cart {
 
   }
 
-  async hidebar() {
+  async closePreviewBar() {
     await this.hidebar.click();
+    await this.cartLink.click();
   }
 
   async checkoutValidation() {
@@ -120,23 +121,49 @@ exports.Cart = class Cart {
   }
   async cartQunatitySelectorFunctionality(page) {
 
-    const initialPrice = parseInt(
+  await this.cartLink.click();
+
+  // Initial price
+  const initialPrice = parseInt(
+    (await this.cartTotalPrice.textContent()).replace(/[^\d]/g, '')
+  );
+  // Increase quantity
+  await this.quantityplus.click();
+
+  // Wait until total price increases
+  await expect(async () => {
+
+    const updatedPrice = parseInt(
       (await this.cartTotalPrice.textContent()).replace(/[^\d]/g, '')
     );
-    await this.cartLink.click();
-    await this.quantityplus.click();
-    await page.waitForTimeout(2000);
-    const increasedPrice = parseInt(
+
+    expect(updatedPrice).toBeGreaterThan(initialPrice);
+
+  }).toPass();
+
+  const increasedPrice = parseInt(
+    (await this.cartTotalPrice.textContent()).replace(/[^\d]/g, '')
+  );
+  // Decrease quantity
+  await this.quantityminus.click();
+
+  // Wait until price returns back
+  await expect(async () => {
+
+    const updatedPrice = parseInt(
       (await this.cartTotalPrice.textContent()).replace(/[^\d]/g, '')
     );
-    expect(increasedPrice).toBeGreaterThan(initialPrice);
-    await this.quantityminus.click();
-    await page.waitForTimeout(2000);
-    const decreasedPrice = parseInt(
-      (await this.cartTotalPrice.textContent()).replace(/[^\d]/g, '')
-    );
-    expect(decreasedPrice).toBe(initialPrice);
-  }
+
+    expect(updatedPrice).toBe(initialPrice);
+
+  }).toPass();
+
+  const decreasedPrice = parseInt(
+    (await this.cartTotalPrice.textContent()).replace(/[^\d]/g, '')
+  );
+
+  expect(decreasedPrice).toBe(initialPrice);
+}
 
 }
 
