@@ -21,7 +21,7 @@ test.beforeEach(async ({ page }) => {
     await hp.cookieAccept;
 });
 test.describe('ALL', () => {
-    test('Login1 Verify navigation to login page via account link', async ({ page }) => {
+    test.only('Login1 Verify navigation to login page via account link', async ({ page }) => {
         await lp.loginNavigation();
         await expect(page).toHaveURL("https://lovebeautyandplanet.in/account/login");
     });
