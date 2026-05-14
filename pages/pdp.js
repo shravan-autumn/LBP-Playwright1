@@ -103,6 +103,7 @@ exports.PDP = class PDP {
   }
   async writeToUsNavigation() {
     await this.faqtab.click();
+    await this.writeToUs.waitFor();
     await this.writeToUs.click();
   }
   async youmayalsolikeNavigation() {
