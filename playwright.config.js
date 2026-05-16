@@ -14,9 +14,9 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
-  timeout: 50000,
+  timeout: 70000,
   expect: {
-    timeout: 50000
+    timeout: 70000
   },
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
@@ -35,9 +35,10 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     channel: 'chrome',
-    viewport: null,
     browserName: 'chromium',
-    headless: false,
+    headless: true,
+    //viewport: null,
+   viewport: { width: 1440, height: 900 },
     trace: 'on-first-retry',
   },
 

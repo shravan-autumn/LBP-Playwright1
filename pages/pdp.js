@@ -47,6 +47,8 @@ exports.PDP = class PDP {
     this.cautionNotice = page.locator('[data-caution-notice-test-id]');
     //cart drawer
     this.cartproductTitle = page.locator("//a[contains(@class,'cart-item__name')]");
+    this.closeCart = page.locator('(//button[@class="drawer__close"])[1]');
+
   }
 
   async expectLoaded() {
@@ -82,6 +84,7 @@ exports.PDP = class PDP {
     await this.atcButton.click();
     const before = await this.qtyInput.inputValue();
     await this.qtyPlus.click();
+    await this.closeCart.click();
     await this.qtyMinus.click();
     await expect(this.qtyInput).toHaveValue(before);
   }

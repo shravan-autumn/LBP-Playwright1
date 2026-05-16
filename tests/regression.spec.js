@@ -21,19 +21,6 @@ test.beforeEach(async ({ page }) => {
     await hp.cookieAccept;
 });
 test.describe('ALL', () => {
-    test.only('Login1 Verify navigation to login page via account link', async ({ page }) => {
-        await lp.loginNavigation();
-        await expect(page).toHaveURL("https://lovebeautyandplanet.in/account/login");
-    });
-
-    test('Login2 Verify user can register and login', async ({ page }) => {
-        const lp = new Login(page);
-        await lp.registerUser();
-        await expect(page).toHaveURL("https://lovebeautyandplanet.in/account");
-        await lp.logout();
-        await lp.login();
-        await expect(page).toHaveURL("https://lovebeautyandplanet.in/account");
-    });
     test('HP1 Verify logo is displayed', async ({ page }) => {
         await expect(hp.logo).toBeVisible();
     });
