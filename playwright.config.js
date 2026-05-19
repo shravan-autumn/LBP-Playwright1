@@ -36,9 +36,9 @@ export default defineConfig({
     video: 'retain-on-failure',
     channel: 'chrome',
     browserName: 'chromium',
-    headless: true,
-    //viewport: null,
-   viewport: { width: 1440, height: 900 },
+    headless: false,
+    viewport: null,
+   //viewport: { width: 1440, height: 900 },
     trace: 'on-first-retry',
   },
 

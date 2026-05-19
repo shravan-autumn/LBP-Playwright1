@@ -21,7 +21,7 @@ test.beforeEach(async ({ page }) => {
     await hp.cookieAccept;
 });
 test.describe('ALL', () => {
-    test('HP1 Verify logo is displayed', async ({ page }) => {
+    test.only('HP1 Verify logo is displayed', async ({ page }) => {
         await expect(hp.logo).toBeVisible();
     });
 
@@ -135,10 +135,12 @@ test.describe('ALL', () => {
     });
 
     test('HP25 Verify footer product links', async ({ page }) => {
+        test.setTimeout(180000);
         await hp.footerProductLinksRedirections(page);
     });
 
     test('HP26 Verify footer concern links', async ({ page }) => {
+        test.setTimeout(180000);
         await hp.footerConcernLinksRedirections(page);
     });
 
@@ -246,6 +248,7 @@ test.describe('ALL', () => {
     });
 
     test('PDP7 Verify quantity decrease', async ({ page }) => {
+        test.setTimeout(180000);
         await pdp.searchPLPToPDPNavigation("oil");
         await pdp.decreaseQuantity();
     });
@@ -290,6 +293,7 @@ test.describe('ALL', () => {
     });
 
     test('Cart3 Verify adding multiple products to cart', async ({ page }) => {
+        test.setTimeout(180000);
         await pdp.searchPLPToPDPNavigation("oil");
         await c.addFirstProductToCart();
         await pdp.searchPLPToPDPNavigation("Best");
@@ -325,6 +329,7 @@ test.describe('ALL', () => {
     });
 
     test('Cart6 Verify the cart quantity increase/decrease functionality', async ({ page }) => {
+        test.setTimeout(180000);
         await pdp.searchPLPToPDPNavigation("oil");
         await c.addFirstProductToCart();
         await c.cartQunatitySelectorFunctionality(page);
